@@ -27,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: yourdockerhubusername/my-app:latest
+          tags: ayaddala/my-app:latest
 
