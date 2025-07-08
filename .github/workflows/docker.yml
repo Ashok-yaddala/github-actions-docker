@@ -24,10 +24,10 @@ jobs:
       - name: Set dynamic image tag
         id: set_tag
         run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          if [[ "${ github.ref }" == "refs/heads/main" ]]; then
             echo "TAG=latest" >> $GITHUB_ENV
           else
-            BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's#refs/heads/##' | tr / -)
+            BRANCH_NAME=$(echo "${ github.ref }" | sed 's#refs/heads/##' | tr / -)
             echo "TAG=${BRANCH_NAME}" >> $GITHUB_ENV
           fi
 
