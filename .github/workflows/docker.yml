@@ -65,8 +65,8 @@ jobs:
      steps:
       - name: Compose up
         run: |
-          sudo docker compose up -d
-          sudo docker ps
+          docker compose up -d
+          docker ps
 
       - name: Output result
         run: echo " Image pushed as $DOCKER_REPO:$TAG"
