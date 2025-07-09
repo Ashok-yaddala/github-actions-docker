@@ -1,4 +1,4 @@
-name: Deploy Node App to Docker Hub using github context and Env concept..
+name: Deploy Node App to Docker Hub using github context and Env concept.
 
 on:
   push:
