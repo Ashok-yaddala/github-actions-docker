@@ -51,12 +51,22 @@ jobs:
           docker tag ayaddala/docker:latest 173003893026.dkr.ecr.ap-south-1.amazonaws.com/ayaddala/docker:latest
           docker push 173003893026.dkr.ecr.ap-south-1.amazonaws.com/ayaddala/docker:latest
 
+
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: ${{ env.DOCKER_REPO }}:${{ env.TAG }}
+
+  deploy:
+     needs: docker-deploy
+     runs-on: Ashok-self-hosted
+     steps:
+      - name: Compose up
+        run: |
+          sudo docker compose up -d
+          sudo docker ps
 
       - name: Output result
         run: echo " Image pushed as $DOCKER_REPO:$TAG"
