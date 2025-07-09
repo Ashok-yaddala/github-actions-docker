@@ -37,6 +37,20 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
+      - name: Set AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.1.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: AWS ECR Push
+        run: |
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | sudo docker login --username AWS --password-stdin 427521931204.dkr.ecr.ap-south-1.amazonaws.com
+          sudo docker build -t getting-started .
+          sudo docker tag getting-started:latest 427521931204.dkr.ecr.ap-south-1.amazonaws.com/getting-started:latest
+          sudo docker push 427521931204.dkr.ecr.ap-south-1.amazonaws.com/getting-started:latest
+
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
