@@ -46,10 +46,10 @@ jobs:
 
       - name: AWS ECR Push
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | sudo docker login --username AWS --password-stdin 427521931204.dkr.ecr.ap-south-1.amazonaws.com
-          sudo docker build -t getting-started .
-          sudo docker tag getting-started:latest 427521931204.dkr.ecr.ap-south-1.amazonaws.com/getting-started:latest
-          sudo docker push 427521931204.dkr.ecr.ap-south-1.amazonaws.com/getting-started:latest
+          aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 173003893026.dkr.ecr.ap-south-1.amazonaws.com
+          docker build -t ayaddala/docker .
+          docker tag ayaddala/docker:latest 173003893026.dkr.ecr.ap-south-1.amazonaws.com/ayaddala/docker:latest
+          docker push 173003893026.dkr.ecr.ap-south-1.amazonaws.com/ayaddala/docker:latest
 
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
